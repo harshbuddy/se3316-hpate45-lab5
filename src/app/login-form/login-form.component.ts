@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from '../user-service.service'
 
 @Component({
   selector: 'app-login-form',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginFormComponent implements OnInit {
 
-  constructor() { }
+  constructor(private user:UserService, private router:Router) { }
 
   ngOnInit() {
+  }
+  
+  login(email,password){
+    this.user.checkUser(email,password);
   }
 
 }
