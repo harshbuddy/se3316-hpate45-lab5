@@ -11,6 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
+    "firebase-app": "0.0.1",
+    "mongodb": "^3.1.10",
     "mongoose": "^5.3.14",
     "typescript": "^3.2.1"
   }

@@ -9,7 +9,7 @@ import { UserService } from '../user-service.service'
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor( private router:Router) { }
 
   ngOnInit() {
   }

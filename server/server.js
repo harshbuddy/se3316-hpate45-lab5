@@ -1,11 +1,24 @@
 var express = require('express');
-var mongoose = require("mongoose");
 const bodyParser = require('body-parser');
+
 const app = express();
+
 var port = 8081;
+
+var Game = require("./models/gameSchema");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://harshbuddy:harshbuddy123@ds123834.mlab.com:23834/se3316-hpate45-lab5', { useNewUrlParser: true });
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+
+db.once('open', function() {
+  console.log("DB connection alive");
+});
 
 var router = express.Router();
 
@@ -27,8 +40,17 @@ router.route('/login')
     });
 
 
-
-
+router.route('/dashboard')
+    .get(function(req,res){
+        Game.find({},function(err,games){
+            if(err){
+                res.send(err);
+            } else {
+                res.send(games);
+            }
+        })
+    });
+    
 
 app.use('/api', router);
 
