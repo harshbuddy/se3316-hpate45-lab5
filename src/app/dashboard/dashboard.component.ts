@@ -12,6 +12,7 @@ import { HttpClient } from '@angular/common/http';
 
 export class DashboardComponent implements OnInit {
   response: any;
+  response2: any;
   loadVal: number;
 
   
@@ -33,9 +34,14 @@ export class DashboardComponent implements OnInit {
     if (this.loadVal == 1){
       this.loadVal = this.loadVal-1;
     } else {
+      let gameNeeded = this.http.get('https://se3316-hpate45-lab5-harshbuddy.c9users.io:8081/api/dashboard/'+id);
+    gameNeeded.subscribe((response2) => {
+      this.response2 = response2;
+      console.log(this.response2);
+    })
       this.loadVal = this.loadVal+1;
+      
     }
-    console.log(this.loadVal,description,reviewRating);
   }
 
 }

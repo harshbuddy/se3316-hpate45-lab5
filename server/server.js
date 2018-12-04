@@ -56,6 +56,17 @@ router.route('/dashboard')
         })
     });
     
+router.route('/dashboard/:id')
+    .get(function(req,res){
+        Game.find({_id: req.params.id},function(err,game){
+            if (err){
+                res.send(err);
+            } else {
+                res.send(game);
+            }
+        })
+    })
+    
 
 app.use('/api', router);
 

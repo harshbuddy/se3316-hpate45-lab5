@@ -11,8 +11,22 @@
             </div>
             <br>
         </div>
-        <div *ngIf="loadVal==1">
-            <h2>hello</h2>
+        <div *ngIf="loadVal==1 && response2">
+            <div class="card">
+              <div class="card-body">
+                <h2 class="card-title">{{response2[0]?.title}}</h2>
+                <p class="card-text">{{response2[0].description}}</p>
+                <hr>
+                <h4 class="card-title" >Reviews and Ratings</h4>
+
+                <div *ngFor="let review of response2[0]['reviewRating']">
+                    <h5 class="card-title">{{review.reviewName}}</h5>
+                    <p class="card-text">{{review.reviewComments}}</p>
+                    <p class="card-text">{{review.rating}}</p>
+                    <br>
+                </div>
+              </div>
+            </div>
         </div>
     </div>
 </div>
