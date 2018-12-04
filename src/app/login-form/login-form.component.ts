@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../user-service.service'
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-login-form',
@@ -8,14 +10,39 @@ import { UserService } from '../user-service.service'
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent implements OnInit {
-
-  constructor(private user:UserService, private router:Router) { }
+  responseUser: any;
+  
+  constructor(private user:UserService, private router:Router, private http:HttpClient) { }
 
   ngOnInit() {
   }
   
-  login(email,password){
-    this.user.checkUser(email,password);
+  login(email,password,eL,pL){
+    if (email == 0 || pL == 0){
+      
+      this.responseUser = "Not all fields are filled out.";
+      console.log(this.responseUser);
+      
+    } else {
+      
+      let currentUser = this.http.get('https://se3316-hpate45-lab5-harshbuddy.c9users.io:8081/api/validateUser/'+email+'/'+password);
+      currentUser.subscribe((response) => {
+        console.log(response);
+        if (Object.keys(response).length == 0) {
+          this.responseUser = "Please check the email entered.";
+        } else {
+          this.responseUser = response;
+          
+          if (this.responseUser[0].password == password){
+            this.responseUser = ("Welcome " + this.responseUser[0].firstName + " " + this.responseUser[0].lastName)
+          } else {
+            this.responseUser = "Incorrect Password";
+          }
+        }
+        
+      });
+
+    }
   }
 
 }

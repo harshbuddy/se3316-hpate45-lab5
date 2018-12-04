@@ -6,6 +6,8 @@ const app = express();
 var port = 8081;
 
 var Game = require("./models/gameSchema");
+var User = require("./models/userSchema");
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -66,7 +68,22 @@ router.route('/dashboard/:id')
             }
         })
     })
+
+router.route('/validateUser/:email/:password')
+    .get(function(req,res){
+        User.find({email: req.params.email},function(err,user){
+            if (err){
+                res.send(err);
+            } else {
+                res.send(user);
+            }
+        })
+    })
     
+router.route('/newUser/:email/:password/:first/:last')
+    .post(function(req,res){
+        
+    })
 
 app.use('/api', router);
 

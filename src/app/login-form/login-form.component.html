@@ -9,6 +9,8 @@
         <input type="password" class="form-control" #passwordInput placeholder="Password">
     </div>
 
-    <button class="btn btn-primary" (click)='login(emailInput.value, passwordInput.value)' >Submit</button>
-
+    <button class="btn btn-primary" (click)='login(emailInput.value, passwordInput.value, emailInput.value.length, passwordInput.value.length);'>Login</button>
+    <br>
+    <br>
+    <h1 *ngIf="responseUser">{{responseUser}}</h1>
 </div>

@@ -4,7 +4,7 @@ import {HttpClientModule} from '@angular/common/http';
 
 import { LoginFormComponent } from './login-form/login-form.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ShowMoreDataComponent } from './show-more-data/show-more-data.component';
+import { RegisterFormComponent } from './register-form/register-form.component';
 
 const routes: Routes = [
   
@@ -13,6 +13,11 @@ const routes: Routes = [
     component: LoginFormComponent
   },
 
+  {
+    path: 'register',
+    component: RegisterFormComponent
+  },
+  
   {
     path: 'dashboard',
     component: DashboardComponent

@@ -1,8 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-// var reviewRatingSchema = require("../models/reviewRatingSchema");
-
 var reviewRatingSchema = new Schema({
     reviewName: String,
     reviewComments: String,
@@ -11,6 +9,8 @@ var reviewRatingSchema = new Schema({
 
 var gameSchema = new Schema({
     title: String,
+    price: Number,
+    stock: Number,
     description: String,
     reviewRating: [reviewRatingSchema],
     imgSrc: String

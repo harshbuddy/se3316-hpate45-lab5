@@ -8,7 +8,7 @@ import { HeaderComponent } from './header/header.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { UserService} from './user-service.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ShowMoreDataComponent } from './show-more-data/show-more-data.component';
+import { RegisterFormComponent } from './register-form/register-form.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import { ShowMoreDataComponent } from './show-more-data/show-more-data.component
     HeaderComponent,
     LoginFormComponent,
     DashboardComponent,
-    ShowMoreDataComponent
+    RegisterFormComponent,
   ],
   
   imports: [
