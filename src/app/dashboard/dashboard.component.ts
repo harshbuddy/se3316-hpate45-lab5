@@ -12,9 +12,11 @@ import { HttpClient } from '@angular/common/http';
 
 export class DashboardComponent implements OnInit {
   response: any;
+  loadVal: number;
+
   
   constructor( private user:UserService,private router:Router,private http:HttpClient) {
-
+    this.loadVal=0;
   }
 
   ngOnInit() {
@@ -25,6 +27,15 @@ export class DashboardComponent implements OnInit {
       console.log(this.response);
     })
     
+  }
+  
+  showMoreData(id) {
+    if (this.loadVal == 1){
+      this.loadVal = this.loadVal-1;
+    } else {
+      this.loadVal = this.loadVal+1;
+    }
+    console.log(this.loadVal,description,reviewRating);
   }
 
 }

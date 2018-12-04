@@ -8,13 +8,15 @@ import { HeaderComponent } from './header/header.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { UserService} from './user-service.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ShowMoreDataComponent } from './show-more-data/show-more-data.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     LoginFormComponent,
-    DashboardComponent
+    DashboardComponent,
+    ShowMoreDataComponent
   ],
   
   imports: [
