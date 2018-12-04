@@ -23,6 +23,10 @@ db.once('open', function() {
 var router = express.Router();
 
 router.use(function(req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
     console.log('Something is happening');
     next();
 });
@@ -42,6 +46,7 @@ router.route('/login')
 
 router.route('/dashboard')
     .get(function(req,res){
+        
         Game.find({},function(err,games){
             if(err){
                 res.send(err);
