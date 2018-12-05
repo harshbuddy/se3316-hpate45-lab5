@@ -28,6 +28,8 @@ export class DashboardComponent implements OnInit {
   activateColl=false;
   newItemActivate=false;
   response3:any;
+  startModify = false;
+  modifyTitle: any;
 
   
 
@@ -182,7 +184,18 @@ export class DashboardComponent implements OnInit {
   }
   
   modifyItem(title){
-    console.log("modified");
+    if(this.startModify == false){
+      this.startModify = true;
+    } else {
+      this.startModify = false;
+    }
+    this.modifyTitle = title;
+  }
+  
+  finalModify(price,stock,desc){
+    this.http.post('https://se3316-hpate45-lab5-harshbuddy.c9users.io:8081/api/modifyGame', {'title' : this.modifyTitle, 'desc' : desc, 'stock' : stock, 'price' : price}).subscribe(data=>{
+      this.response3 = data.message; 
+    });
   }
   
   newItem(){

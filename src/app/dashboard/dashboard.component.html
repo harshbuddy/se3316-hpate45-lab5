@@ -144,3 +144,14 @@
     </div>
     <h2 *ngIf="response3">{{response3}}</h2>
 </div>
+
+<div class="container" *ngIf = "currentUserStrength==2 && startModify">
+    <label for="gameDescInput">Modify the description of the game</label>
+    <input type="text" class="form-control" id="gameDescInput" #gDI placeholder="Description here...">
+    <label for="gameStock">Enter the new stock of the game</label>
+    <input type="text" class="form-control" id="gameStock" #gS placeholder="20">
+    <label for="gamePrice">Enter the new price of the game</label>
+    <input type="text" class="form-control" id="gamePrice" #gP placeholder="52">
+    <br>
+    <button class="btn btn-success" (click) = "finalModify(gP.value,gS.value,gDI.value)">Modify Item</button>
+</div>

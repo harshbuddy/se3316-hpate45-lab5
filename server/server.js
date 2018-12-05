@@ -146,6 +146,26 @@ router.route('/deleteGame')
         })
     })
     
+router.route('/modifyGame')
+    .post((req, res) => {
+        Game.find({'title': req.body.title}, (err, game)=> {
+            if (err) {
+                return res.send(err);
+            }
+            game[0].description = req.body.desc;
+            game[0].stock = req.body.stock;
+            game[0].price = req.body.price;
+            game[0].save(function(err){
+                if(err){
+                    return res.send(err);
+                } else {
+                    res.send({message:"Modify Success"});
+                }
+            })
+        })
+    })
+    
+    
 router.route('/newUser/:email/:password/:first/:last')
     .post(function(req,res){
         var user = new User();
