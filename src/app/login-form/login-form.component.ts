@@ -11,6 +11,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginFormComponent implements OnInit {
   responseUser: any;
+  loggedIn: any;
+  holder: any;
   
   constructor(private user:UserService, private router:Router, private http:HttpClient) { }
 
@@ -18,8 +20,7 @@ export class LoginFormComponent implements OnInit {
   }
   
   login(email,password,eL,pL){
-    if (email == 0 || pL == 0){
-      
+    if (eL == 0 || pL == 0){
       this.responseUser = "Not all fields are filled out.";
       console.log(this.responseUser);
       
@@ -34,7 +35,10 @@ export class LoginFormComponent implements OnInit {
           this.responseUser = response;
           
           if (this.responseUser[0].password == password){
-            this.responseUser = ("Welcome " + this.responseUser[0].firstName + " " + this.responseUser[0].lastName)
+            this.responseUser = ("Welcome " + this.responseUser[0].firstName + " " + this.responseUser[0].lastName);
+            this.holder = this.responseUser[0].firstName;
+            localStorage.setItem('user', JSON.stringify(response[0].firstName));
+            this.loggedIn = (localStorage.getItem('user'));
           } else {
             this.responseUser = "Incorrect Password";
           }

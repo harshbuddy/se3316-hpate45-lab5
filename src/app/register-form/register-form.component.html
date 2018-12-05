@@ -17,6 +17,11 @@
         <input type="password" class="form-control" #passwordInput placeholder="Password">
     </div>
 
-    <button class="btn btn-primary" (click)='register(firstNameInput.value, lastNameInput.value, emailInput.value, passwordInput.value)'>Register</button>
+    <button class="btn btn-primary" (click)='register(firstNameInput.value, lastNameInput.value, emailInput.value, passwordInput.value
+    , firstNameInput.value.length, lastNameInput.value.length, emailInput.value.length, passwordInput.value.length)'>Register</button>
 
+    <br>
+    <br>
+    
+    <h1 *ngIf="responseNewUser">{{responseNewUser}}</h1>
 </div>
