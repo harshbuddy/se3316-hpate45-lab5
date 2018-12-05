@@ -25,7 +25,7 @@ export class RegisterFormComponent implements OnInit {
       
     } else {
       
-      let newUser = this.http.post('https://se3316-hpate45-lab5-harshbuddy.c9users.io:8081/api/newUser/'+emailI+'/'+passwordI+'/'+firstI+'/'+lastI,null);
+      let newUser = this.http.post('https://se3316-hpate45-lab5-harshbuddy.c9users.io:8081/api/newUser/'+emailI+'/'+passwordI+'/'+firstI+'/'+lastI,{});
       newUser.subscribe((response) => {
         console.log(response.message);
         this.responseNewUser = response.message;

@@ -20,7 +20,8 @@
                 <br>
                 <button style="margin-right: 10px;" class="btn btn-light" *ngIf="currentUserStrength==1" (click)="addtocart(response2[0].title,response2[0].price)">Add to Cart</button>
                 <button class="btn btn-light" *ngIf="currentUserStrength==1" (click)="makeReview(response2[0].title)">Add Review</button>
-
+                <button style="margin-right: 10px;" class="btn btn-light" *ngIf="currentUserStrength==2" (click)="deleteItem(response2[0].title)">Delete Item</button>
+                <button class="btn btn-light" *ngIf="currentUserStrength==2" (click)="modifyItem(response2[0].title)">Modify Item</button>
                 <hr>
                 
                 <h4 class="card-title" >Reviews and Ratings</h4>
@@ -97,28 +98,49 @@
         <button class="btn btn-light btn-lg" (click)="startMakeCollection()">Create Your Own Collection</button>
         <div *ngIf="activateColl">
             <form>
-              <div class="form-group">
-                <label for="nameColl">Enter your collections name</label>
-                <input type="email" class="form-control" id="nameColl" placeholder="My Collection">
-              </div>
+                <div class="form-group">
+                    <label for="nameColl">Enter your collections name</label>
+                    <input type="email" class="form-control" id="nameColl" placeholder="My Collection">
+                </div>
   
-              <div class="form-group">
-                <label for="descColl">Add a description</label>
-                <textarea class="form-control" id="descColl" rows="3"></textarea>
-              </div>
+                <div class="form-group">
+                    <label for="descColl">Add a description</label>
+                    <textarea class="form-control" id="descColl" rows="3"></textarea>
+                </div>
               
-            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-secondary active">
-                    <input type="radio" name="private" id="default" autocomplete="off" checked> Private
-                </label>
-                <label class="btn btn-secondary">
-                    <input type="radio" name="Public" id="public" autocomplete="off"> Public
-                </label>
-            </div>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-secondary active">
+                        <input type="radio" name="private" id="default" autocomplete="off" checked> Private
+                    </label>
+                    <label class="btn btn-secondary">
+                        <input type="radio" name="Public" id="public" autocomplete="off"> Public
+                    </label>
+                </div>
             </form>
         </div>
     </div>
-    
 </div>
 
-
+<div class="container" *ngIf="currentUserStrength==2">
+    <button class="btn btn-light btn-lg" *ngIf="currentUserStrength==2" (click)="newItem()">Add New Item</button>
+    <br>
+    <br>
+    <div *ngIf="newItemActivate == true">
+        <h4>Enter in the info to make your new item:</h4>
+        <br>
+        <label for="gameNameInput">Enter the title of the game</label>
+        <input type="text" class="form-control" id="gameNameInput" #gNI placeholder="Call of Duty">
+        <label for="gamePriceInput">Enter the price of the game</label>
+        <input type="text" class="form-control" id="gamePriceInput" #gPI placeholder="33">
+        <label for="gameDescInput">Enter the description of the game</label>
+        <input type="text" class="form-control" id="gameDescInput" #gDI placeholder="Description here...">
+        <label for="gameStock">Enter the stock of the game</label>
+        <input type="text" class="form-control" id="gameStock" #gS placeholder="20">
+        <label for="gameLink">Enter the image link of the game</label>
+        <input type="text" class="form-control" id="gameLink" #gL placeholder="imgur link here...">
+        <br>
+        <button class="btn btn-success" (click) = "makeNewItem(gNI.value,gPI.value,gDI.value,gS.value,gL.value)">Create Item</button>
+        <br>
+    </div>
+    <h2 *ngIf="response3">{{response3}}</h2>
+</div>

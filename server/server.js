@@ -108,6 +108,44 @@ router.route('/newReview/:gameName')
         
     })
     
+router.route('/addGame')
+    .post((req,res)=>{
+        var newGame = Game();
+        newGame.title = req.body.title;
+        newGame.stock = req.body.stockNum;
+        newGame.description = req.body.gamedesc;
+        newGame.price = req.body.gamePrice;
+        newGame.imgSrc = req.body.imgLink;
+        
+        Game.find({'title':newGame.title},function(err,foundGame){
+            if (foundGame[0] == null){
+                newGame.save(function(err){
+                    if(err){
+                        return res.send(err);
+                    } else {
+                        res.send({message:"Game Added"});
+                    }
+                });
+                
+            } else {
+                res.send({message:"Game already exists"});
+            }
+            if (err) {
+                res.send(err);
+            }
+        });
+    })
+    
+router.route('/deleteGame')
+    .post((req, res) => {
+        Game.remove({'title': req.body.title}, (err, col)=> {
+            if (err) {
+                return res.send(err);
+            }
+            return res.send({message : "Deleted Game"}); 
+        })
+    })
+    
 router.route('/newUser/:email/:password/:first/:last')
     .post(function(req,res){
         var user = new User();

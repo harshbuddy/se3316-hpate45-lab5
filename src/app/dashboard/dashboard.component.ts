@@ -26,6 +26,8 @@ export class DashboardComponent implements OnInit {
   reviewOn=false;
   checkPublish: boolean;
   activateColl=false;
+  newItemActivate=false;
+  response3:any;
 
   
 
@@ -171,6 +173,32 @@ export class DashboardComponent implements OnInit {
     } else {
       this.activateColl = false;
     }
+  }
+  
+  deleteItem(title){
+    this.http.post('https://se3316-hpate45-lab5-harshbuddy.c9users.io:8081/api/deleteGame', {'title' : title}).subscribe(data=>{
+      this.response3 = data.message; 
+    });
+  }
+  
+  modifyItem(title){
+    console.log("modified");
+  }
+  
+  newItem(){
+    if(this.newItemActivate == false){
+      this.newItemActivate = true;
+    } else {
+      this.newItemActivate = false;
+    }
     
   }
+  
+  makeNewItem(title,price,desc,stock,imgLink){
+    this.newItemActivate = false;
+    this.http.post('https://se3316-hpate45-lab5-harshbuddy.c9users.io:8081/api/addGame/', { 'title' : title, 'stockNum' : stock, 'gamedesc' : desc, 'gamePrice' : price, 'imgLink' : imgLink}).subscribe(data=>{
+      this.response3 = data.message; 
+    });
+  }
+  
 }
