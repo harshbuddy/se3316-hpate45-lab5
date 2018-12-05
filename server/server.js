@@ -1,4 +1,5 @@
 var express = require('express');
+var validator = require('validator'); 
 const bodyParser = require('body-parser');
 
 const app = express();
@@ -80,10 +81,43 @@ router.route('/validateUser/:email/:password')
         })
     })
     
+    
 router.route('/newUser/:email/:password/:first/:last')
     .post(function(req,res){
+        var user = new User();
+        user.firstName = req.params.first;
+        user.lastName = req.params.last;
+        user.email = req.params.email;
+        user.password = req.params.password;
+        
+        if(!validator.isEmail(req.params.email) || req.params.email == ""){
+            return res.send({message:"Invalid Email"});
+        } else if (req.params.password == ""){
+            return res.send({message:"Please enter a password"});
+        } else {
+            User.find({'email':user.email},function(err,foundUser){
+                if (foundUser[0] == null){
+                    
+                    user.save(function(err){
+                        if (err) {
+                            return res.send(err);
+                        } else {
+                            res.send({message:"Account Created"});
+                        }
+                    });
+                    
+                } else {
+                    res.send({message:"Email already in use"});
+                }
+                if (err) {
+                    res.send(err);
+                }
+            });
+        }
+        
         
     })
+    
 
 app.use('/api', router);
 
