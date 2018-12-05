@@ -81,6 +81,32 @@ router.route('/validateUser/:email/:password')
         })
     })
     
+router.route('/newReview/:gameName')
+    .put(function(req,res){
+        
+        var game = new Game();
+        game.title = req.params.gameName;
+        
+        Game.findOne({'title':game.title},function(err,game){
+            if (err){
+                res.send(err);
+            } else {
+                game.reviewRating.push({
+                    'reviewWriter':req.body.reviewsWriter,
+                    'reviewName':req.body.reviewsTitle,
+                    'reviewComments':req.body.reviewsText,
+                    'rating':req.body.reviewsRating
+                },function(err){
+                    if(err){
+                        res.send("error: "+err);
+                    } else {
+                        res.send("added review");
+                    }
+                })
+            }
+        })
+        
+    })
     
 router.route('/newUser/:email/:password/:first/:last')
     .post(function(req,res){

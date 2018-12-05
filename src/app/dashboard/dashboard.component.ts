@@ -23,15 +23,21 @@ export class DashboardComponent implements OnInit {
   checkBuy: boolean;
   finalCart = [];
   finalCost: number;
+  reviewOn=false;
+  checkPublish: boolean;
+  activateColl=false;
 
   
 
   constructor( private user:UserService,private router:Router,private http:HttpClient) {
     this.loadVal = 0;
     this.cartTotal = 0;
-    this.currentUser = localStorage.user;
-    this.currentUser = this.currentUser.replace('"','');
-    this.currentUser = this.currentUser.replace('"','');
+    if (localStorage.getItem('user')!=null){
+      this.currentUser = localStorage.user;
+      this.currentUser = this.currentUser.replace('"','');
+      this.currentUser = this.currentUser.replace('"','');
+    }
+    
 
   };
 
@@ -45,7 +51,7 @@ export class DashboardComponent implements OnInit {
       this.currentUserStrength = 1;
     } else if (this.currentUser == "Harsh") {
       this.currentUserStrength = 2;
-    }
+    } 
     
     if (this.currentUserStrength == 1) {
       console.log("Average User Connected");
@@ -140,7 +146,31 @@ export class DashboardComponent implements OnInit {
       this.shoppingCart = [];
       this.cartTotal = 0;
     }
+  }
+  
+  makeReview(title){
+    this.reviewOn = true;
     
   }
-
+  
+  submitReview(title,rating,review){
+    this.checkPublish = confirm("Are you sure you want to save this review?");
+    if(this.checkPublish){
+      if(title==""||rating==""||review==""){
+        alert("Not all fields are completed.");
+        return false;
+      }
+      console.log("published");
+      this.reviewOn = false;
+    }
+  }
+  
+  startMakeCollection(){
+    if (this.activateColl == false){
+      this.activateColl = true;
+    } else {
+      this.activateColl = false;
+    }
+    
+  }
 }

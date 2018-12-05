@@ -18,13 +18,16 @@
                 <h3 class="card-title">${{response2[0].price}}</h3>
                 <p class="card-text">{{response2[0].description}}</p>
                 <br>
-                <button class="btn btn-light" *ngIf="currentUserStrength==1" (click)="addtocart(response2[0].title,response2[0].price)">Add to Cart</button>
+                <button style="margin-right: 10px;" class="btn btn-light" *ngIf="currentUserStrength==1" (click)="addtocart(response2[0].title,response2[0].price)">Add to Cart</button>
+                <button class="btn btn-light" *ngIf="currentUserStrength==1" (click)="makeReview(response2[0].title)">Add Review</button>
+
                 <hr>
                 
                 <h4 class="card-title" >Reviews and Ratings</h4>
 
                 <div *ngFor="let review of response2[0]['reviewRating']">
                     <h5 class="card-title">{{review.reviewName}}</h5>
+                    <h6 class="card-title">{{review.reviewWriter}}</h6>
                     <p class="card-text">{{review.reviewComments}}</p>
                     <p class="card-text">{{review.rating}}</p>
                     <br>
@@ -66,6 +69,54 @@
             <br>
         </div>
         <h4>Total ${{finalCost}}</h4>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="container" *ngIf="reviewOn && currentUserStrength==1">
+        <h3>Fill out a Review</h3>
+        <form>
+            <div class="form-group">
+                <label for="title">Review Title</label>
+                <input type="text" class="form-control" #titleInput id="title" placeholder="The Best Game Ever">
+            </div>
+            <div class="form-group">
+                <label for="rating">Rating (please write out of 10)</label>
+                <input type="text" class="form-control" #ratingInput id="rating" placeholder="5/10">
+            </div>
+            <div class="form-group">
+                <label for="review">Write your review here</label>
+                <textarea class="form-control" #reviewInput id="review" rows="3"></textarea>
+            </div>
+        </form>
+        <button class="btn btn-dark" (click)="submitReview(titleInput.value,ratingInput.value,reviewInput.value)">Save Review</button>
+    </div>
+    <br>
+    <br>
+    <div class="container" *ngIf="currentUserStrength==1">
+        <button class="btn btn-light btn-lg" (click)="startMakeCollection()">Create Your Own Collection</button>
+        <div *ngIf="activateColl">
+            <form>
+              <div class="form-group">
+                <label for="nameColl">Enter your collections name</label>
+                <input type="email" class="form-control" id="nameColl" placeholder="My Collection">
+              </div>
+  
+              <div class="form-group">
+                <label for="descColl">Add a description</label>
+                <textarea class="form-control" id="descColl" rows="3"></textarea>
+              </div>
+              
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-secondary active">
+                    <input type="radio" name="private" id="default" autocomplete="off" checked> Private
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="Public" id="public" autocomplete="off"> Public
+                </label>
+            </div>
+            </form>
+        </div>
     </div>
     
 </div>
