@@ -37,14 +37,37 @@
     <div class="container" *ngIf="currentUserStrength==1">
         <h1>{{currentUser}}'s Shopping Cart</h1>
         <hr>
-        <div class="container" *ngIf="shoppingCart">
+        <div class="container" *ngIf="shoppingCart.length > 0">
             <div *ngFor="let item of shoppingCart">
                 <h2>{{item[0]}}</h2>
                 <h3>${{item[1]}}</h3>
+                <h3>Quantity: {{item[2]}}</h3>
+                <button class="btn btn-dark" style="margin-right: 10px;" (click)="addQuantity(item[0])">+</button>
+                <button class="btn btn-dark" (click)="remQuantity(item[0])">-</button>
+                <br><br>
+                <button class="btn btn-danger" (click)="removeItem(item[0])">Remove</button>
+                <br>
                 <br>
             </div>
+            <hr>
+            <button class="btn btn-danger" (click)="clearCart()" style="margin-right:10px;">Clear All Items</button>
+            <button class="btn btn-success" (click)="buyCart()">Buy</button>
+            <hr>
+            <h3>Total:</h3>
+            <h1>${{cartTotal}}</h1>
         </div>
     </div>
+    
+    <div class="container" *ngIf="finalCart.length > 0">
+        <h4>You Purchase Receipt</h4>
+        <div *ngFor="let x of finalCart">
+            <h6>{{x[0]}}</h6>
+            <h6>${{x[1]*x[2]}}</h6>
+            <br>
+        </div>
+        <h4>Total ${{finalCost}}</h4>
+    </div>
+    
 </div>
 
 
