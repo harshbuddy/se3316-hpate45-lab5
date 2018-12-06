@@ -1,11 +1,20 @@
 //import necessary libraries and modules
 var express = require('express');
 var validator = require('validator'); 
+var nodemailer = require('nodemailer'); 
 const bodyParser = require('body-parser');
 
 const app = express();
 //create port
 var port = 8081;
+var mailOptions;
+var smtpTransport = nodemailer.createTransport({
+    service:"Gmail",
+    auth: {
+        user: "hpate45@gmail.com",
+        pass: "Harsh1998!"
+    }
+});
 //import schemas
 var Game = require("./models/gameSchema");
 var User = require("./models/userSchema");
@@ -280,7 +289,19 @@ router.route('/newUser/:email/:password/:first/:last')
                 }
             });
         }
-        
+        //send a confirmation email not working
+        // mailOptions={
+        //     to : req.params.email,
+        //     subject: "Confirm email for TBV Games",
+        //     html : "Please enter this code to verify email. 1953"
+        // };
+        // smtpTransport.sendMail(mailOptions,function(err,res){
+        //     if (err){
+        //         console.log(err);
+        //     } else {
+        //         console.log(res);
+        //     }
+        // })
         
     })
     
