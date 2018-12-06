@@ -1,0 +1,59 @@
+<div class="container">
+    
+    <div>
+        <h2>Security Policy</h2>
+        <p *ngIf="response">{{response[0].security}}</p>
+    </div>
+    <br>
+    <div>
+        <h2>Privacy Policy</h2>
+        <p *ngIf="response">{{response[0].privacy}}</p>
+    </div>
+    <br>
+    <div>
+        <h2>DMCA Notice and Takedown</h2>
+        <p *ngIf="response">{{response[0].dmca}}</p>
+        <br>
+        <a *ngIf="currentUserStrength==2" href="https://images.template.net/wp-content/uploads/2015/08/DMCA-Notice-and-Takedown-Plolicy.pdf">View Admin Doc here</a>
+        <br>
+        <br>
+        <h3>Contact Us</h3>
+        <h6>Harsh Patel</h6>
+        <h6>hpate45@uwo.ca</h6>
+        <h6>905-555-5555</h6>
+        <h6>University of Western Ontario</h6>
+        <p>1151 Richmond St, London, ON N6A 3K7</p>
+    </div>
+    <br>
+    <div>
+        <button style="margin-right: 10px;" class="btn btn-light" (click)="emailTD()">Takedown</button>
+        <button style="margin-right: 10px;" class="btn btn-light" (click)="emailIF()">Infringement Notice</button>
+        <button style="margin-right: 10px;" class="btn btn-light" (click)="emailDC()">Dispute Claim</button>
+    </div>
+    
+    <br>
+    <br>
+    
+    <div class="container" *ngIf="currentUserStrength==2">
+        <label for="secPol">Edit Security Policy</label>
+        <input type="text" class="form-control" id="secPol" #sp placeholder="Enter new security policy here">
+        <br>
+        <button class="btn btn-success" (click) = "finalModify(gP.value,gS.value,gDI.value)">Submit</button>
+        
+        <br>
+        <br>
+        
+        <label for="priPol">Edit Private Policy</label>
+        <input type="text" class="form-control" id="priPol" #pp placeholder="Enter new private policy here">
+        <br>
+        <button class="btn btn-success" (click) = "finalModify(gP.value,gS.value,gDI.value)">Submit</button>
+        
+        <br>
+        <br>
+        
+        <label for="dPol">Edit DMCA Policy</label>
+        <input type="text" class="form-control" id="dPol" #dmca placeholder="Enter new DMCA policy here">
+        <br>
+        <button class="btn btn-success" (click) = "finalModify(gP.value,gS.value,gDI.value)">Submit</button>
+    </div>
+</div>

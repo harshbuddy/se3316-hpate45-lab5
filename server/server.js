@@ -8,6 +8,7 @@ var port = 8081;
 
 var Game = require("./models/gameSchema");
 var User = require("./models/userSchema");
+var Policy = require("./models/policySchema");
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -59,6 +60,20 @@ router.route('/dashboard')
         })
     });
     
+    
+router.route('/policy')
+    .get(function(req,res){
+        
+        Policy.find({},function(err,policy){
+            if(err){
+                res.send(err);
+            } else {
+                res.send(policy);
+            }
+        })
+    });
+
+
 router.route('/dashboard/:id')
     .get(function(req,res){
         Game.find({_id: req.params.id},function(err,game){

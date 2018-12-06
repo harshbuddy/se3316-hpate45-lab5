@@ -5,6 +5,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
+import { PolicyComponent } from './policy/policy.component';
 
 const routes: Routes = [
   
@@ -21,6 +22,11 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent
+  },
+  
+  {
+    path: 'policy',
+    component: PolicyComponent
   }
   
 

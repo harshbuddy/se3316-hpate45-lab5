@@ -9,6 +9,8 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { UserService} from './user-service.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
+import { FooterComponent } from './footer/footer.component';
+import { PolicyComponent } from './policy/policy.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { RegisterFormComponent } from './register-form/register-form.component';
     LoginFormComponent,
     DashboardComponent,
     RegisterFormComponent,
+    FooterComponent,
+    PolicyComponent,
   ],
   
   imports: [
