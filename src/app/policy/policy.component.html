@@ -38,15 +38,15 @@
         <label for="secPol">Edit Security Policy</label>
         <input type="text" class="form-control" id="secPol" #sp placeholder="Enter new security policy here">
         <br>
-        <button class="btn btn-success" (click) = "finalModify(gP.value,gS.value,gDI.value)">Submit</button>
+        <button class="btn btn-success" (click) = "newSecurity(sp.value)">Submit</button>
         
         <br>
         <br>
         
-        <label for="priPol">Edit Private Policy</label>
+        <label for="priPol">Edit Privacy Policy</label>
         <input type="text" class="form-control" id="priPol" #pp placeholder="Enter new private policy here">
         <br>
-        <button class="btn btn-success" (click) = "finalModify(gP.value,gS.value,gDI.value)">Submit</button>
+        <button class="btn btn-success" (click) = "newPrivacy(pp.value)">Submit</button>
         
         <br>
         <br>
@@ -54,6 +54,6 @@
         <label for="dPol">Edit DMCA Policy</label>
         <input type="text" class="form-control" id="dPol" #dmca placeholder="Enter new DMCA policy here">
         <br>
-        <button class="btn btn-success" (click) = "finalModify(gP.value,gS.value,gDI.value)">Submit</button>
+        <button class="btn btn-success" (click) = "newDMCA(dmca.value)">Submit</button>
     </div>
 </div>

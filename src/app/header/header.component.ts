@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  //function to reset values based on logout
   logoutChange(){
     localStorage.clear();
     window.location.reload();

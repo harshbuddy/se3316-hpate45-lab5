@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { PolicyComponent } from './policy/policy.component';
 
+//define angular routes to activate components
 const routes: Routes = [
   
   {
